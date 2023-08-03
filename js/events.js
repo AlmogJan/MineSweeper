@@ -109,11 +109,11 @@ function onMark(elCell, i, j) {
         ".mine-dfl-counter"
       ).innerText = `${gGame.minesToDeflect}`;
       elCell.classList.add("marked");
+      renderCell({ i, j }, MARK);
       if (isVictory()) {
         gameWon();
       }
     }
-    renderCell({ i, j }, MARK);
   }
 }
 
