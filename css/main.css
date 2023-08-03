@@ -1,0 +1,60 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+  color: white;
+  font-family: monospace;
+  text-align: center;
+}
+.emoji-Btn {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.table {
+  display: none;
+  background-color: gray;
+  border: 5px groove rgba(128, 128, 128, 0.496);
+  height: 50%;
+  width: 30%;
+  margin-inline: auto;
+}
+
+.table tr {
+  border: 5px groove rgba(128, 128, 128, 0.496);
+}
+
+.table tr td {
+  border: 5px groove rgba(128, 128, 128, 0.496);
+  height: 20px;
+  width: 20px;
+}
+.table tr td:hover {
+  cursor: pointer;
+}
+
+.shown {
+  background-color: blue;
+  height: 20px;
+  width: 20px;
+}
+
+.marked {
+  background-color: coral;
+}
+.game-over {
+  display: none;
+  position: absolute;
+  background-color: #d2042d;
+  top: 50%;
+  left: 50%;
+  padding: 5px;
+  width: 300px;
+  transform: translate(-50%, -70%);
+}
