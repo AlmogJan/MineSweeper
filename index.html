@@ -5,29 +5,41 @@
     <title>Mine Sweeper</title>
   </head>
   <body>
-    <h1>Mine Sweeper</h1>
-    <button data-number="4" data-mines="3" onclick="onChooseDificulty(this)">
+    <h1><span>🪐</span> Mine Sweeper</h1>
+    <button
+      class="dificulty"
+      data-number="4"
+      data-mines="3"
+      onclick="onChooseDificulty(this)"
+    >
       Easy 4X4
     </button>
-    <button data-number="8" data-mines="14" onclick="onChooseDificulty(this)">
+    <button
+      class="dificulty"
+      data-number="8"
+      data-mines="14"
+      onclick="onChooseDificulty(this)"
+    >
       Hard 8X8
     </button>
     <button
+      class="dificulty"
       data-number="12"
       data-mines="32"
       onclick="onChooseDificulty
         (this)"
     >
-      Extreme 12X12</button
-    ><br />
-    <span class="timer"></span>
-    <span class="lives"
-      ><span class="life1">🧡</span><span class="life2">🧡</span
-      ><span class="life3">🧡</span></span
-    >
-    <button class="hint emoji-Btn" onclick="showHint()">💡</button
-    ><button class="hint emoji-Btn" onclick="showHint()">💡</button
-    ><button class="hint emoji-Btn" onclick="showHint()">💡</button> <br />
+      Extreme 12X12
+    </button>
+    <div class="lives-and-hints">
+      <span class="timer"></span>
+      <span class="lives"
+        ><span class="life1">💜</span><span class="life2">💜</span
+        ><span class="life3">💜</span></span
+      >
+      <button class="hint emoji-Btn" onclick="onHint()">💡</button>
+      <span class="hint-count">X</span>
+    </div>
     <span class="mine-dfl"
       >Mines To Deflect: <span class="mine-dfl-counter"></span>
     </span>

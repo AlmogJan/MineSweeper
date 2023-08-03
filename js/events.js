@@ -15,15 +15,17 @@ function oninit() {
     strikes: 0,
     secsPassed: 0,
     isFirstClick: true,
+    isOnHint: false,
+    hintCount: 3,
   };
   document.querySelector(".game-over").style.display = "none";
   document.querySelector(".game-over h4").innerText = "";
-  document.querySelector(".smiley").innerText = RESTART_SMILEY;
+  document.querySelector(".hint-count").innerText = `X${gGame.hintCount}`;
+  resetHearts();
   document.querySelector(
     ".mine-dfl-counter"
   ).innerText = `${gGame.minesToDeflect}`;
-
-  resetHearts();
+  document.querySelector(".smiley").innerText = RESTART_SMILEY;
   gBoard = createBoard();
   renderTable(gBoard);
   document.querySelector(".table").style.display = "table";
@@ -40,21 +42,32 @@ function onCellClick(elCell, i, j) {
         var newMine = getRandomCell();
         if (gBoard[newMine.row][newMine.col].type === X) {
           gBoard[newMine.row][newMine.col].type = MINE;
-          console.log(gBoard);
         }
       } while (gBoard[newMine.row][newMine.col].type !== MINE);
     }
     gGame.isFirstClick = false;
   }
   if (boardCell.isShown || boardCell.isMarked) return;
-  if (boardCell.type === X) {
-    boardCell.isShown = true;
-    elCell.classList.add("shown");
-    gGame.shownCount++;
-    isEmpty(i, j);
-    renderCell({ i, j }, X);
+  if (gGame.isOnHint) {
+    showAllNeighbors(i, j);
+    setTimeout(() => {
+      gGame.isOnHint = false;
+      showAllNeighbors(i, j);
+    }, 1000);
   }
+  if (!gGame.isOnHint) {
+    if (boardCell.type === X) {
+      boardCell.isShown = true;
+      elCell.classList.add("shown");
+      gGame.shownCount++;
+      isEmpty(i, j);
+      renderCell({ i, j }, X);
+    }
+  }
+
   if (boardCell.type === MINE) {
+    if (gGame.isOnHint) return;
+    elCell.classList.add("shown");
     renderCell({ i, j }, boardCell.type);
     gGame.strikes++;
     document.querySelector(`.life${gGame.strikes}`).innerText = LIFE_LOST;
@@ -79,12 +92,13 @@ function onMark(elCell, i, j) {
   if (boardCell.isMarked) {
     boardCell.isMarked = false;
     elCell.classList.remove("marked");
+    elCell.classList.add("unopened");
     if (boardCell.type === MINE) {
       gGame.minesToDeflect++;
       document.querySelector(
         ".mine-dfl-counter"
       ).innerText = `${gGame.minesToDeflect}`;
-      renderCell({ i, j }, X);
+      renderCell({ i, j }, EMPTY);
     }
   } else {
     boardCell.isMarked = true;
@@ -100,5 +114,15 @@ function onMark(elCell, i, j) {
       }
     }
     renderCell({ i, j }, MARK);
+  }
+}
+
+function onHint() {
+  if (gGame.hintCount === 0 || gGame.isOnHint) {
+    return;
+  } else {
+    gGame.hintCount--;
+    gGame.isOnHint = true;
+    document.querySelector(".hint-count").innerText = `X${gGame.hintCount}`;
   }
 }

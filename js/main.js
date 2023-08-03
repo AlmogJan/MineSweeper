@@ -102,6 +102,7 @@ function countMineNeighbor(rowIdx, colIdx) {
 }
 
 function isEmpty(rowIdx, colIdx) {
+  if (gGame.isOnHint) return;
   for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
     if (i < 0 || i >= gBoard.length) continue;
     for (var j = colIdx - 1; j <= colIdx + 1; j++) {
@@ -112,6 +113,7 @@ function isEmpty(rowIdx, colIdx) {
         currCell.isShown = true;
         const mineNeighbors = countMineNeighbor(i, j);
         document.querySelector(`.row-${i}.col-${j}`).classList.add("shown");
+        gGame.shownCount++;
         renderCell({ i, j }, mineNeighbors > 0 ? mineNeighbors : X);
         if (mineNeighbors === 0) {
           isEmpty(i, j);
@@ -123,8 +125,8 @@ function isEmpty(rowIdx, colIdx) {
 
 function isVictory() {
   var emptyCellsNumber = gDificulty * gDificulty - gMinesCount;
-  console.log("minesToDeflect", gGame.minesToDeflect);
-  console.log("gGame.strikes", gGame.strikes);
+  console.log(emptyCellsNumber);
+  console.log(gGame.shownCount);
   if (gGame.strikes < MAX_STRIKES) {
     return (
       emptyCellsNumber === gGame.shownCount ||
@@ -138,8 +140,7 @@ function gameWon() {
   gGame.isOn = false;
   stopTimer();
   document.querySelector(".game-over").style.display = "block";
-  document.querySelector(".game-over h4").innerText =
-    "OMG YOU DEFLECTED THE MINE FEILD! YOU WON!";
+  document.querySelector(".game-over h4").innerText = WIN_MSG;
 }
 
 function gameOver() {
@@ -147,8 +148,7 @@ function gameOver() {
   gGame.isOn = false;
   stopTimer();
   document.querySelector(".game-over").style.display = "block";
-  document.querySelector(".game-over h4").innerText =
-    "OH LOOK, A MINE FEILD...LOSER";
+  document.querySelector(".game-over h4").innerText = DEAD_MSG;
 }
 
 function startTimer() {
@@ -172,4 +172,29 @@ function stopTimer() {
 function resetHearts() {
   for (var i = 0; i < 3; i++)
     document.querySelector(`.life${i + 1}`).innerText = LIFE;
+}
+
+function showAllNeighbors(rowIdx, colIdx) {
+  for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
+    if (i < 0 || i >= gBoard.length) continue;
+    for (var j = colIdx - 1; j <= colIdx + 1; j++) {
+      if (j < 0 || j >= gBoard[0].length) continue;
+      if (gGame.isOnHint) {
+        if (!gBoard[i][j].isShown) {
+          renderCell({ i, j }, `${gBoard[i][j].type}`);
+          document.querySelector(`.row-${i}.col-${j}`).classList.add("shown");
+        }
+      } else {
+        if (!gBoard[i][j].isShown) {
+          renderCell({ i, j }, EMPTY);
+          document
+            .querySelector(`.row-${i}.col-${j}`)
+            .classList.remove("shown");
+          document
+            .querySelector(`.row-${i}.col-${j}`)
+            .classList.add("unopened");
+        }
+      }
+    }
+  }
 }

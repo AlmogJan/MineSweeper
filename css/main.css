@@ -8,8 +8,30 @@ body {
   background-color: black;
   color: white;
   font-family: monospace;
+  background-image: url(../img/big-sky.jpeg);
   text-align: center;
 }
+
+h1 {
+  text-shadow: 3px 3px 3px #7521ee;
+  margin-top: 2px;
+  margin-bottom: 10px;
+}
+
+.dificulty {
+  background-color: white;
+  color: black;
+  font-family: monospace;
+  margin-inline-start: auto;
+  box-shadow: 2px 2px 2px 2px #7521ee;
+  border: 1px solid #7521ee;
+  border-radius: 10%;
+}
+
+.lives-and-hints {
+  margin-top: 8px;
+}
+
 .emoji-Btn {
   background-color: transparent;
   border: none;
@@ -19,42 +41,49 @@ body {
 
 .table {
   display: none;
-  background-color: gray;
-  border: 5px groove rgba(128, 128, 128, 0.496);
-  height: 50%;
-  width: 30%;
+  background-color: #041026;
+  border: 5px groove #051a44;
   margin-inline: auto;
+  text-align: center;
 }
 
 .table tr {
-  border: 5px groove rgba(128, 128, 128, 0.496);
+  border: 5px groove #051a44;
 }
 
 .table tr td {
-  border: 5px groove rgba(128, 128, 128, 0.496);
-  height: 20px;
-  width: 20px;
+  border: 5px groove #051a44;
+  height: 30px;
+  width: 30px;
 }
 .table tr td:hover {
   cursor: pointer;
 }
 
 .shown {
-  background-color: blue;
+  background-color: #5000c3;
   height: 20px;
   width: 20px;
 }
 
 .marked {
-  background-color: coral;
+  background-color: #1f0398;
+}
+
+.unopened {
+  border: 5px groove #051a44;
 }
 .game-over {
   display: none;
   position: absolute;
-  background-color: #d2042d;
+  background: linear-gradient(to top, #051a44, #1f0398, #041026);
+  border: 2mm ridge #5000c3;
   top: 50%;
   left: 50%;
   padding: 5px;
   width: 300px;
   transform: translate(-50%, -70%);
+}
+footer {
+  margin-top: 50px;
 }
