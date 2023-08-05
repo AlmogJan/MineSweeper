@@ -13,12 +13,16 @@ body {
 }
 
 h1 {
+  font-size: 60px;
   text-shadow: 3px 3px 3px #7521ee;
   margin-top: 2px;
   margin-bottom: 10px;
 }
 
 .dificulty {
+  font-size: 20px;
+  height: 30px;
+  font-weight: bold;
   background-color: white;
   color: black;
   font-family: monospace;
@@ -30,6 +34,8 @@ h1 {
 
 .lives-and-hints {
   margin-top: 8px;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 .emoji-Btn {
@@ -37,6 +43,13 @@ h1 {
   border: none;
   font-size: 1.5em;
   cursor: pointer;
+}
+.mine-dfl {
+  font-size: 30px;
+  font-weight: bold;
+}
+.smiley {
+  font-size: 30px;
 }
 
 .table {
@@ -53,8 +66,8 @@ h1 {
 
 .table tr td {
   border: 5px groove #051a44;
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  width: 40px;
 }
 .table tr td:hover {
   cursor: pointer;
@@ -79,11 +92,15 @@ h1 {
   background: linear-gradient(to top, #051a44, #1f0398, #041026);
   border: 2mm ridge #5000c3;
   top: 50%;
+  font-size: 50px;
+  font-weight: bold;
   left: 50%;
   padding: 5px;
-  width: 300px;
+  width: 500px;
   transform: translate(-50%, -70%);
 }
 footer {
-  margin-top: 50px;
+  margin-top: 30px;
+  font-size: 25px;
+  font-weight: bold;
 }

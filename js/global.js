@@ -8,7 +8,7 @@ var gDificulty = 0;
 var gMinesCount = 0;
 
 const EMPTY = " ";
-const X = "X";
+const X = " ";
 const MINE = "💣";
 const MARK = "🚩";
 const MAX_STRIKES = 3;

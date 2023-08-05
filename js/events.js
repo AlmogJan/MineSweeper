@@ -102,6 +102,7 @@ function onMark(elCell, i, j) {
     }
   } else {
     boardCell.isMarked = true;
+    renderCell({ i, j }, MARK);
     elCell.classList.add("marked");
     if (boardCell.type === MINE) {
       gGame.minesToDeflect--;

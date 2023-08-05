@@ -125,8 +125,6 @@ function isEmpty(rowIdx, colIdx) {
 
 function isVictory() {
   var emptyCellsNumber = gDificulty * gDificulty - gMinesCount;
-  console.log(emptyCellsNumber);
-  console.log(gGame.shownCount);
   if (gGame.strikes < MAX_STRIKES) {
     return (
       emptyCellsNumber === gGame.shownCount ||
